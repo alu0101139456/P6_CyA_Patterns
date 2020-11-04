@@ -22,4 +22,6 @@ int main() {
   alfabeto.InsertSymbol('A');
     
   std::cout << alfabeto.PrintAlphabet();
+
+  std::cout << "\nBusqueda: " << alfabeto.FindSymbol('l');
 }

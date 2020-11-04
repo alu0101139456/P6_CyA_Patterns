@@ -35,6 +35,6 @@ void Alphabet::InsertSymbol( char symbol) {
   alfa_.Insert((int)symbol);
 }
 
-bool Alphabet::FindSymbol( char symbol) {
-  return alfa_.Find((int)symbol)
+bool Alphabet::FindSymbol(char symbol) {
+  return alfa_.Find((int)symbol);
 }
