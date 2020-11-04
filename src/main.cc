@@ -10,26 +10,16 @@
 
 #include <iostream>
 #include "set.h"
+#include "alfabeto.h"
 
 
 int main() {
-  Set test;
 
-for (size_t i = 1; i < 100; i++) {
-    if ( !(i%2) ) {
-      test.Insert(i);
-    }
-  }
+  Alphabet alfabeto;
 
-  std::vector<int> aux = test.toVectorInt();
-
-  for (size_t i = 0; i < aux.size(); i++) {
-    std::cout << aux[i] << " ";
-  }
-
-  std::cout << test.Find(2);
-
-
+  std::cout << alfabeto.PrintAlphabet();
+  
+  alfabeto.InsertSymbol('A');
     
-    
+  std::cout << alfabeto.PrintAlphabet();
 }

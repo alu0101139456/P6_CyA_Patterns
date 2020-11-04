@@ -16,23 +16,24 @@
 #include <string>
 
 
-class Alfabeto {
+class Alphabet {
  private:
   Set alfa_;
 
  public:
 
-  Alfabeto();
-  ~Alfabeto() {}
-  Alfabeto( const Alfabeto& rhs);
+  Alphabet();
+  ~Alphabet() {}
+  Alphabet( const Alphabet& rhs);
 
-  void InsertSymbol( char symbol);
-  void InsertFromFile();
-  bool FindSymbol(char sym);
-  // std::set<caracter_t>::iterator end();
-  // bool pertenece( caracter_t caracter);
-  bool IsInAlphabeth(std::string expresion);
+  void InsertSymbol(char);
+  void InsertAlphabetFromFile();
+  void InsertAlphabet();
+  bool FindSymbol(char);
+  bool IsInAlphabeth(std::string);
+
+  std::string PrintAlphabet();
   
-  Alfabeto& operator=(const Alfabeto& rhs);
+  Alphabet& operator=(const Alphabet& rhs);
 
 };

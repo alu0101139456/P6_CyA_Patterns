@@ -232,7 +232,7 @@ bool Set::IsBelonging(const int number_to_prove) const {
 std::string Set::toString() {
   std::stringstream output;
   output << "{";
-  std::vector<int> set_elements;
+  std::vector<char> set_elements;
   std::vector<unsigned long> dummy_set = set_;
   for (uint i = 0; i < dummy_set.size(); i++) {
     for (uint j = 1; j <= MAX_LONG; j++) {
@@ -253,6 +253,8 @@ std::string Set::toString() {
   output << "}";
   return output.str();
 }
+
+
 
 
 std::vector<int> Set::toVectorInt() {
