@@ -1,3 +1,12 @@
+/*
+ * Autor: Ángel Julián Bolaño Campos
+ * Asignatura: Computabilidad y Algoritmia
+ * Curso: 2º Ingeniería Informática
+ * Editor: Visual Studio Code
+ * Estilo Google C++ Style Guide
+ * Práctica 6: Busqueda de patrones
+ * 
+*/
 #pragma once
 
 
@@ -7,6 +16,8 @@
 #include <vector>
 #include <cassert>
 #include <sstream>
+
+#define MAX_LONG sizeof(long) * 8
 
 class Set {
  private:
@@ -22,25 +33,24 @@ class Set {
   Set(const Set&);
   std::vector<unsigned long> get_set(void) const;
 
-  Set operator +(const Set&);    
-  Set operator *(const Set&);    
-  Set operator !() const;        
-  Set operator -(const Set&);    
-  void operator =(const Set&);   
-  bool operator ==(const Set&);
+ 
   void Add(const int);           
-  void AddAndResize(const int);
+  void Insert(const int);
   void Remove(const int);        
   void Clear();                  
   bool IsEmpty() const;
   bool IsBelonging(const int) const;
 
   std::string toString();
-  void print() {
-    for (unsigned long elements : set_)
-    std::cout << elements << " ";
-    std::cout << std::endl;
-  }
+  std::vector<int> toVectorInt();
+  bool Find(const int);
+
+  Set operator +(const Set&);    
+  Set operator *(const Set&);    
+  Set operator !() const;        
+  Set operator -(const Set&);    
+  void operator =(const Set&);   
+  bool operator ==(const Set&);
 };
 
 std::ostream& operator <<(std::ostream& , const Set);

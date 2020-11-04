@@ -1,7 +1,7 @@
 # Práctica 6. Búsqueda de patrones
 
 ## Ángel Julián Bolaño Campos
-## Computabilidad y Algoritmia
+### Computabilidad y Algoritmia
 
 ---
 
@@ -24,7 +24,7 @@ Se debe diseñar un programa que reciba por línea de comandos tres argumentos: 
 
 ~~~
 
-`./pattern_search pattern infile.txt outfile.txt`
+./pattern_search pattern infile.txt outfile.txt
 
 ~~~
 
