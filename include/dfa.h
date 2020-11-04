@@ -16,14 +16,14 @@
 #include "alfabeto.h"
 #include "estado.h"
 
-class DFA {
+class Dfa {
  private:
   Alphabet Al_;
   std::set<State> states_dfa_;
 
  public:
-  DFA() {}
-  ~DFA() {}
+  Dfa() {}
+  ~Dfa() {}
   void InsertState( State estado);
   std::set<State>::iterator Begin();
   std::set<State>::iterator End();
