@@ -48,21 +48,27 @@ std::vector<unsigned long> Set::get_set(void) const {
 
 
 Set Set::operator +(const Set& SecondSet) {
-  Set Result(*this);
-  unsigned min_size = SecondSet.max_of_elemts_;
-  unsigned long temp_mask = mask_;
-  if (SecondSet.max_of_elemts_ > max_of_elemts_) {
-    Result = SecondSet;
-    min_size = max_of_elemts_;
-    temp_mask = SecondSet.mask_;
+  Set BiggerSet = *this;
+  Set SmallerSet = SecondSet;
+  unsigned max_size = BiggerSet.max_of_elemts_;
+  unsigned min_size = SmallerSet.max_of_elemts_;
+  if (SmallerSet.max_of_elemts_ > BiggerSet.max_of_elemts_) {
+    BiggerSet = SmallerSet;
+    SmallerSet = *this;
+    max_size = BiggerSet.max_of_elemts_;
+    min_size = SmallerSet.max_of_elemts_;
   }
-  int condition = min_size / bits_per_set_ 
-                  - ((min_size % bits_per_set_) ? 0 : 1);
+  Set Result(BiggerSet);
+  int condition = min_size / bits_per_set_ - ((min_size % bits_per_set_) ? 0 : 1);
   for (int i = 0; i <= condition; i ++) {
-    Result.set_[i] = set_[i] | SecondSet.set_[i];
+    Result.set_.at(i) = set_.at(i) | SecondSet.set_.at(i);
   }
-  
-  *(Result.set_.end()-1) = temp_mask & *(Result.set_.end()-1);
+  int condition2 = max_size / bits_per_set_
+                  - ((max_size % bits_per_set_) ? 0 : 1);
+  for (int i = condition + 1; i < condition2; i++) {
+    Result.set_.at(i) = (max_size == max_of_elemts_) ? set_.at(i) : SecondSet.set_.at(i);
+  }
+  *(Result.set_.end()-1) = BiggerSet.mask_ & *(Result.set_.end()-1);
   return Result;
 }
 
@@ -136,7 +142,7 @@ bool Set::operator ==(const Set& SecondSet) {
     biggest_set = SecondSet;
     smalest_set = *this;
   }
-  for (uint i = 0; i < number_sets_; i ++) {
+  for (uint i = 0; i < number_sets_; i++) {
     if (set_[i] != SecondSet.set_[i]) {
       is_equal = 0;
     }
@@ -168,7 +174,9 @@ void Set::Insert(const int number_to_add) {
     if (number_to_add % bits_per_set_ != 0) {
       new_size++;
     }
+    max_of_elemts_ = new_size * bits_per_set_;
     set_.resize(new_size, 0);
+    number_sets_ = new_size;
   }
   Add(number_to_add);
 }
@@ -296,3 +304,4 @@ bool Set::Find(const int number_to_find) {
   }
   return false;
 }
+
