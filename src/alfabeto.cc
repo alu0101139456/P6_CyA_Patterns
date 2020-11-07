@@ -12,12 +12,13 @@
 
 
 Alphabet::Alphabet() {
-  InsertAlphabet();
-
+  InsertAlphabetACII();
+  std::cout << "Alfabeto cargado: " << std::endl;
+  std::cout << alfa_.toString() << std::endl;
 }
 
 
-void Alphabet::InsertAlphabet() {
+void Alphabet::InsertAlphabetACII() {
   //Inserta los valores de la tabla ASCII
   for (size_t i = 97; i < 123; i++) {
     alfa_.Insert(i);
@@ -37,4 +38,20 @@ void Alphabet::InsertSymbol( char symbol) {
 
 bool Alphabet::FindSymbol(char symbol) {
   return alfa_.Find((int)symbol);
+}
+
+bool Alphabet::IsInAlphabeth(std::string string_to_analize) {
+  int i = 0;
+  
+  while (FindSymbol(string_to_analize[i])) {
+    i++;
+  }
+
+  if (i == (int)string_to_analize.size()) {
+    std::cout << string_to_analize << "->ω ∊ ∑ -->DEBUG" << std::endl;
+    return true;
+  } else {
+    std::cout << string_to_analize << "-> ω ∉ ∑ -->DEBUG" << std::endl;
+    return false;
+  }
 }
