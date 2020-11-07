@@ -9,19 +9,38 @@
 */
 
 #include <iostream>
-#include "set.h"
-#include "alfabeto.h"
+// #include "set.h"
+// #include "alfabeto.h"
+#include "pattern_search.h"
 
 
-int main() {
+void help();
 
-  Alphabet alfabeto;
 
-  std::cout << alfabeto.PrintAlphabet();
-  
-  alfabeto.InsertSymbol('A');
+
+int main(int argc, char *argv[]) {
+
+  if ( argc == 3 ) {
+    PatternSearch( argv[1], argv[2],"output.txt" );
+  }
+  else if ( argc == 4) {
+    PatternSearch( argv[1], argv[2], argv[3]);
+  }
+  else {
+    help();
+  }
     
-  std::cout << alfabeto.PrintAlphabet();
+}
 
-  std::cout << "\nBusqueda: " << alfabeto.FindSymbol('l');
+
+
+void help() {
+  system("clear");
+  std::cout << "\nHELP";
+  std::cout << "\nDESCRIPTION     \n";
+  std::cout << "fibonacci_words [FILE INPUT] [FILE_OUTPUT]     \n";
+  std::cout << "fibonacci_words [FILE INPUT] \n";
+  std::cout << "Default: output.txt";
+
+  std::cout << "\n";
 }
