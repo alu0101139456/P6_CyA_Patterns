@@ -6,18 +6,22 @@ SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
 
-LIBRARIES	:=
-EXECUTABLE	:= main
+LIBRARIES	:= "a1bc" input.txt
+EXECUTABLE	:= pattern_search
 
 
-all: $(BIN)/$(EXECUTABLE)
+all: $(BIN)/$(EXECUTABLE) 
 
 run: clean all
 	clear
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cc
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ 
 
 clean:
-	-rm $(BIN)/*
+	-rm $(BIN)/pattern_search
+
+
+withfile:
+	./bin/pattern_search "a1bc" input.txt
