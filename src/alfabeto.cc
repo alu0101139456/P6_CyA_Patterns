@@ -43,8 +43,9 @@ bool Alphabet::FindSymbol(char symbol) {
 bool Alphabet::IsInAlphabeth(std::string string_to_analize) {
   int i = 0;
   
-  while (FindSymbol(string_to_analize[i])) {
+  while (alfa_.IsBelonging((int)string_to_analize[i])) {
     i++;
+    std::cout << i << "|";
   }
 
   if (i == (int)string_to_analize.size()) {
