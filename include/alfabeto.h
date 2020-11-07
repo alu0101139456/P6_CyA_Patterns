@@ -28,7 +28,7 @@ class Alphabet {
 
   void InsertSymbol(char);
   void InsertAlphabetFromFile();
-  void InsertAlphabet();
+  void InsertAlphabetACII();
   bool FindSymbol(char);
   bool IsInAlphabeth(std::string);
 
