@@ -16,11 +16,8 @@ PatternSearch::PatternSearch( std::string pattern_to_make, std::string         n
     pattern_ = pattern_to_make;
     file_input_.open(name_file_input);
     file_output_.open(name_file_output);
-    if (file_input_.is_open() && file_output_.is_open()) {
-      std::cout << "Ficheros abiertos" << std::endl;
-    }
   } else {
-    std::cout << "No pertenece al alfabeto el patron" << std::endl;
+    std::cerr << "El patron no pertenece al alfabeto." << std::endl;
   }
 }
 PatternSearch::~PatternSearch() {
