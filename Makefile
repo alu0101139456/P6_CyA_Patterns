@@ -24,4 +24,4 @@ clean:
 
 
 withfile:
-	./bin/pattern_search "a1bc" input.txt
+	./bin/pattern_search "abc" input.txt
