@@ -45,7 +45,6 @@ bool Alphabet::IsInAlphabeth(std::string string_to_analize) {
   
   while (alfa_.IsBelonging((int)string_to_analize[i])) {
     i++;
-    std::cout << i << "|";
   }
 
   if (i == (int)string_to_analize.size()) {
