@@ -36,4 +36,7 @@ class Dfa {
 
   std::vector<std::string> GetAceptStates();
   std::string GetStartState();
+
+  void GenerateDfaWithPattern(std::string);
+
 };

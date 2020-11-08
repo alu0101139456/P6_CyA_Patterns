@@ -65,4 +65,7 @@ std::string Dfa::GetStartState() {
   return "--";
 }
 
+void Dfa::GenerateDfaWithPattern(std::string pattern) {
 
+  
+}
