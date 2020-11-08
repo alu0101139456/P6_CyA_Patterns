@@ -6,7 +6,7 @@ SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
 
-LIBRARIES	:= "a1bc" input.txt
+
 EXECUTABLE	:= pattern_search
 
 
@@ -24,4 +24,4 @@ clean:
 
 
 withfile:
-	./bin/pattern_search "abc" input.txt
+	./bin/pattern_search "abc" bin/input.txt
