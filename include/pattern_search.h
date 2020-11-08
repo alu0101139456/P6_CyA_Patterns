@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include "alfabeto.h"
+#include "dfa.h"
 
 
 class PatternSearch {
@@ -21,7 +22,7 @@ class PatternSearch {
   std::string pattern_;
   std::ifstream file_input_;
   std::ofstream file_output_;
-
+  Dfa dfa_;
 
  public:
 
@@ -30,9 +31,11 @@ class PatternSearch {
   // PatternSearch( const PatternSearch& rhs);
   PatternSearch( std::string , std::string , std::string );
 
-  bool PatternBelongsAlphabet(std::string);
+  bool StringBelongsAlphabet(std::string);
 
+  void ReadFromFile();
 
+  void MakeDFA();
 
 
 };
