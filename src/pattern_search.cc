@@ -12,13 +12,15 @@
 
 
 PatternSearch::PatternSearch( std::string pattern_to_make, std::string         name_file_input, std::string name_file_output) {
-  if (PatternBelongsAlphabet(pattern_to_make)) {
+  if (StringBelongsAlphabet(pattern_to_make)) {
     pattern_ = pattern_to_make;
     file_input_.open(name_file_input);
     file_output_.open(name_file_output);
+    ReadFromFile();
   } else {
     std::cerr << "El patron no pertenece al alfabeto." << std::endl;
   }
+
 }
 PatternSearch::~PatternSearch() {
   if (file_input_.is_open()) {
@@ -31,6 +33,34 @@ PatternSearch::~PatternSearch() {
   }
 }
 
-bool PatternSearch::PatternBelongsAlphabet(std::string pattern) {
+bool PatternSearch::StringBelongsAlphabet(std::string pattern) {
   return alphabet_.IsInAlphabeth(pattern);
+}
+
+void PatternSearch::ReadFromFile() {
+  std::string aux;
+  int i=0;
+  try {
+    if(file_input_.is_open() && file_input_) {
+      while( !file_input_.eof()) {
+        file_input_ >> aux;
+        if( file_input_.eof()) break;
+        if (StringBelongsAlphabet(aux)) {
+
+        }
+        i++;
+      }
+    }
+    else {
+      std::cerr << "Nombre de fichero erroneo. " << std::endl;
+    }
+       
+  }
+  catch ( std::exception& e) {
+    std::cout << "Failed to read file" << e.what() << std::endl;
+  }  
+}
+
+void PatternSearch::MakeDFA() {
+  dfa_.GenerateDfaWithPattern(pattern_);
 }
