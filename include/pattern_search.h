@@ -32,6 +32,7 @@ class PatternSearch {
   PatternSearch( std::string , std::string , std::string );
 
   bool StringBelongsAlphabet(std::string);
+  bool SearhPattern(std::string);
 
   void ReadFromFile();
 

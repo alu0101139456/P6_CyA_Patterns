@@ -11,25 +11,26 @@
 #include "pattern_search.h"
 
 
-PatternSearch::PatternSearch( std::string pattern_to_make, std::string         name_file_input, std::string name_file_output) {
+PatternSearch::PatternSearch( std::string pattern_to_make, std::string name_file_input, std::string name_file_output) {
+
+  alphabet_.InsertAlphabetACII(); //El Alfabeto lo genera el objeto segun opcion
   if (StringBelongsAlphabet(pattern_to_make)) {
     pattern_ = pattern_to_make;
     file_input_.open(name_file_input);
     file_output_.open(name_file_output);
+    MakeDFA();
     ReadFromFile();
   } else {
     std::cerr << "El patron no pertenece al alfabeto." << std::endl;
   }
 
 }
-PatternSearch::~PatternSearch() {
+PatternSearch::~PatternSearch() { //Cierra los ficheros si estan abiertos
   if (file_input_.is_open()) {
     file_input_.close();
-    std::cout << "Fichero de entrada cerrado" << std::endl;
   }
   if (file_output_.is_open()) {
     file_output_.close();
-    std::cout << "Fichero de salida cerrado." << std::endl;
   }
 }
 
@@ -46,7 +47,11 @@ void PatternSearch::ReadFromFile() {
         file_input_ >> aux;
         if( file_input_.eof()) break;
         if (StringBelongsAlphabet(aux)) {
-
+          if(SearhPattern(aux)) {
+            file_output_ << "SI\"" << aux <<"\"\n";
+          } else {
+            file_output_ << "NO \"" << aux <<"\"\n";
+          }
         }
         i++;
       }
@@ -62,5 +67,10 @@ void PatternSearch::ReadFromFile() {
 }
 
 void PatternSearch::MakeDFA() {
+  dfa_.SetAlphabet(alphabet_);
   dfa_.GenerateDfaWithPattern(pattern_);
+}
+
+bool PatternSearch::SearhPattern(std::string string_to_analize) {
+  return dfa_.SearchPatternInString(string_to_analize);
 }
