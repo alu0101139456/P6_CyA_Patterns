@@ -20,8 +20,8 @@ $(BIN)/$(EXECUTABLE): $(SRC)/*.cc
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ 
 
 clean:
-	-rm $(BIN)/pattern_search
+	-rm $(BIN)/pattern_search output.txt
 
 
 withfile:
-	./bin/pattern_search abc bin/input.txt
+	./bin/pattern_search abc input.txt
