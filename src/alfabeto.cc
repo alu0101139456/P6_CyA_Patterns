@@ -12,9 +12,11 @@
 
 
 Alphabet::Alphabet() {
-  InsertAlphabetACII();
-  std::cout << "Alfabeto cargado: " << std::endl;
-  std::cout << alfa_.toString() << std::endl;
+  // InsertAlphabetACII();
+
+}
+Alphabet::Alphabet( const Alphabet& rhs) {
+  alfa_ = rhs.alfa_;
 }
 
 
@@ -23,7 +25,6 @@ void Alphabet::InsertAlphabetACII() {
   for (size_t i = 97; i < 123; i++) {
     alfa_.Insert(i);
   }
-  
 }
 
 
@@ -48,10 +49,15 @@ bool Alphabet::IsInAlphabeth(std::string string_to_analize) {
   }
 
   if (i == (int)string_to_analize.size()) {
-    std::cout << string_to_analize << "->ω ∊ ∑ -->DEBUG" << std::endl;
+    //std::cout << string_to_analize << "->ω ∊ ∑ " << std::endl;
     return true;
   } else {
-    std::cout << string_to_analize << "-> ω ∉ ∑ -->DEBUG" << std::endl;
+    // std::cout << string_to_analize << "-> ω ∉ ∑ " << std::endl;
     return false;
   }
+}
+
+Alphabet& Alphabet::operator=(const Alphabet& rhs) {
+  alfa_ = rhs.alfa_;
+  return *this;
 }
