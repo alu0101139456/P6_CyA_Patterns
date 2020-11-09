@@ -18,25 +18,40 @@
 
 class Dfa {
  private:
-  Alphabet Al_;
+  Alphabet al_;
   std::set<State> states_dfa_;
 
  public:
   Dfa() {}
   ~Dfa() {}
-  void InsertState( State estado);
+
+  //ITERATORS
   std::set<State>::iterator Begin();
   std::set<State>::iterator End();
-  std::set<State> GetStates();
   std::set<State>::iterator FindStateName(std::string&);
   std::set<State>::iterator FindStateId(unsigned&);
-  void UpdateState(std::set<State>::iterator&,const State&);
-  
-  unsigned get_size() { return states_dfa_.size(); }
 
+  //SETTERS
+  void SetAlphabet(const Alphabet alphabet) { al_ = alphabet; }
+  
+  //GETTERS
+  std::set<State> GetStates();
+  unsigned GetSize() { return states_dfa_.size(); }
   std::vector<std::string> GetAceptStates();
   std::string GetStartState();
 
+  void InsertState( State estado);  
+  
+  void UpdateState(std::set<State>::iterator&,const State&);
+  
   void GenerateDfaWithPattern(std::string);
 
+  bool SearchPatternInString(std::string);
+
+
+ private:  
+  //DEBUGGER FUNTIONS
+  void SeeWhat(State state_to_see);
+
 };
+
