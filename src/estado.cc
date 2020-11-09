@@ -16,22 +16,36 @@ void State::CleanData() {
   acept_state_= false;
   start_state_ = false;
   std::pair<char,unsigned> aux;
-  transition_ = aux; 
+  transition_.clear();
   
 }
 
 
 void State::InsertTransition(std::pair<char,unsigned> new_transition) {
-  SetTransition(new_transition);
+  transition_.push_back(new_transition);
 }
 
 
-void State::PrintTransition() const {
-   std::cout << GetName() << '\n';
-   std::cout << "Con: " << transition_.first << " a estado " << transition_.second << '\n' << std::endl;
-
+void State::PrintTransitions() const {
+  if (!transition_.empty()) {
+    for (size_t i = 0; i < transition_.size(); i++) {
+      std::cout << GetId() << '\n';
+      std::cout << "Con: \"" << transition_[i].first << "\" a estado " << transition_[i].second << std::endl;
+    }
+  } else {
+    std::cout << "El estado \"" << GetId() << "\" no tiene transiciones.\n";
+  }   
 }
 
+//Busca entre sus transiciones si la hay con un caracter determinado
+uint State::Transition(char symbol) const{
+  for ( auto transition : transition_) {
+    if ( transition.first == symbol ){ 
+      return transition.second;
+    }
+  }
+  return -1;
+}
 
 
 State::State(const State& rhs) {
